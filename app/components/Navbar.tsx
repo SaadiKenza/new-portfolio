@@ -5,21 +5,40 @@ type NavlinksProps ={
     href: string 
     children: ReactNode
 }
-
-function NavLink(props:NavlinksProps){
-    return(
-        <li className="hover:bg-slate-600 py-2 px-2">
-            <Link href={props.href}>{props.children}</Link>
+const Header: React.FC = () => {
+  return (
+    <div className="header-container">
+      <img
+        src="/logo.png"
+        alt="Logo de bienvenue"
+        className="logo-page"
+      />
+      <ul>
+        <li className="dropdown">
+          <button
+            type="button"
+            className="dropbtn"
+            aria-haspopup="true"
+          >
+            Langue
+          </button>
+            <div className="dropdown-content">
+              <a href="#">Français</a>
+              <a href="#">Anglais</a>
+            </div>
         </li>
-    )
-}
-export default function Navbar(){
-  return(
-    <nav className ="bg-slate-800 text-slate-50 shadow-xl">
-      <ul className ="container mx-auto flex gap-4">
-        <li><Link href="/">Accueil</Link></li>
-        <li><Link href="/">CV</Link></li>
+        <li>
+          <a href="CV">Contact</a>
+        </li>
+        <li>
+          <a href="#projets">Projets</a>
+        </li>
+        <li>
+          <a href="#A propos">A propos</a>
+        </li>
       </ul>
-    </nav>
-  )
-}
+    </div>
+  );
+};
+
+export default Header;
