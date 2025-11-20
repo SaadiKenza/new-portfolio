@@ -12,7 +12,7 @@ export default function CVEntry(propos:CVEntry){
                 <h3 className="text-xl font-bold text-sky-800">Etudiante</h3>
                 <h4 className="mb.2 italic text-slate-500">ECAM</h4>
             </div>
-            (props.childern)
+
         </div>
     )
 }

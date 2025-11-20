@@ -28,13 +28,13 @@ const Header: React.FC = () => {
             </div>
         </li>
         <li>
-          <a href="CV">Contact</a>
+          <a href="/CV">Contact</a>
         </li>
         <li>
           <a href="#projets">Projets</a>
         </li>
         <li>
-          <a href="#">A propos</a>
+          <a href="/Aboutme">A propos</a>
         </li>
       </ul>
     </div>
