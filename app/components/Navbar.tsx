@@ -14,19 +14,6 @@ const Header: React.FC = () => {
         className="logo-page"
       />
       <ul>
-        <li className="dropdown">
-          <button
-            type="button"
-            className="dropbtn"
-            aria-haspopup="true"
-          >
-            Langue
-          </button>
-            <div className="dropdown-content">
-              <a href="#">Français</a>
-              <a href="#">Anglais</a>
-            </div>
-        </li>
         <li>
           <a href="/CV">Contact</a>
         </li>
@@ -34,7 +21,7 @@ const Header: React.FC = () => {
           <a href="#projets">Projets</a>
         </li>
         <li>
-          <a href="/Aboutme">A propos</a>
+          <a href="/">A propos</a>
         </li>
       </ul>
     </div>
