@@ -41,22 +41,23 @@ html{
   z-index: 1000;
   width:100%;  
 }
-ul {
-      list-style-type: none;
+.navbar-list{
+  list-style-type: none;
       margin: 0;
       padding: 0;
       overflow: hidden;
-      background-color: #4A3B3B;
+      background-color: #4A3B3B; /* Le brun reste ici, seulement pour la nav */
       padding-left: 60px;
       min-height: 50px;
       align-items: center;
-    }
-
-ul li {
+}
+.navbar-list li {
   float: right;
 }
 
-ul li a {
+/* Tu dois aussi mettre à jour tes sélecteurs imbriqués pour qu'ils correspondent */
+.navbar-list li a {
+  /* ... tes styles existants ... */
   display: block;
   color: #D1AFAF;
   text-align: center;
@@ -65,48 +66,10 @@ ul li a {
   cursor: url('/pointeur.png'), auto;
 }
 
-ul li a:hover {
+.navbar-list li a:hover {
   background-color: #B77466
 }
 
-.dropbtn {
-  background-color: #4A3B3B;
-  color: #D1AFAF;
-  padding: 14px 16px;
-  border: none;
-  cursor: url('/pointeur.png'), auto;
-  font-size: 1rem;
-}
-
-ul li .dropdown {
-  position: relative;
-}
-ul li .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #4A3B3B;
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 20;
-}
-
-.dropdown-content a {
-  color: #FADCD9;
-  padding: 3px 4px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #B77466;
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.dropdown:hover .dropbtn {
-  background-color: #B77466;
-}
 .logo-page {
   position: absolute;
   top: 5px;
