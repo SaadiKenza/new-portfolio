@@ -1,26 +1,13 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
-
-// 1. Structure de données mise à jour avec un ID
-// On utilise 'let' pour pouvoir modifier le tableau (supprimer des éléments)
-let projects = [
-  {
-    id: 1, // Ajout d'un ID unique
-    title: "Démineur",
-    employer: "Projet scolaire",
-    description: "Langage: Python avec utilisation de Pygame"
-  },
-  {
-    id: 2,
-    title: "Chess DB",
-    employer: "Projet scolaire",
-    description: "Langage: C# avec l'utilisation d'Avalonia UI et SQLite"
-  }
-];
+import { db } from '@/db'
+import { ProjectsTable } from '@/db/schema' 
+import { eq } from 'drizzle-orm'
+import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 export async function getProjects() {
-  return projects;
+  return await db.select().from(ProjectsTable);
 }
 
 export async function createProject(formData: FormData) {
@@ -30,21 +17,30 @@ export async function createProject(formData: FormData) {
 
   if (!title || !employer || !description) return;
 
-  // Création
-  projects.push({
-    id: Date.now(), // On génère un ID unique basé sur l'heure
+  await db.insert(ProjectsTable).values({
     title: String(title),
     employer: String(employer),
     description: String(description),
   });
-
-  revalidatePath('/projets'); 
+  redirect((await headers()).get('referer')??'/')
 }
 
-// 4. NOUVEAU : Fonction pour supprimer un projet
-export async function deleteProject(id: number) {
-  // On garde tous les projets dont l'ID est DIFFÉRENT de celui qu'on veut supprimer
-  projects = projects.filter(project => project.id !== id);
-  
-  revalidatePath('/projets');
+export async function editProject(form: FormData) {
+  const id = form.get('id');
+  if (!id) return;
+
+  await db
+    .update(ProjectsTable)
+    .set({
+      title: String(form.get('title')),
+      employer: String(form.get('employer')),
+      description: String(form.get('description')),
+    })
+    .where(eq(ProjectsTable.id, String(id)));
+  redirect((await headers()).get('referer')??'/');
+}
+
+export async function deleteProject(id: string) {
+  await db.delete(ProjectsTable).where(eq(ProjectsTable.id, id));
+  redirect((await headers()).get('referer')??'/')
 }
